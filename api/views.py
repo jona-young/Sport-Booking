@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import TennisBooking
-from .serializers import TennisBookingSerializer
+from .models import TennisBooking, News
+from .serializers import TennisBookingSerializer, NewsSerializer
 
 # Create your views here.
 #Need API endpoint for a list of members that can be called with fetchTasks()
@@ -11,13 +11,18 @@ from .serializers import TennisBookingSerializer
 
 
 @api_view(['GET'])
-def tbook_overview(request):
+def api_overview(request):
     api_urls = {
-        'List': '/task-list/',
-        'Detail View': '/task-detail/<str:pk>/',
-        'Create': '/task-create/',
-        'Update': '/task-update/<str:pk>/',
-        'Delete': '/task-delete/<str:pk>/'
+        'Task-List': '/task-list/',
+        'Task-Detail View': '/task-detail/<str:pk>/',
+        'Task-Create': '/task-create/',
+        'Task-Update': '/task-update/<str:pk>/',
+        'Task-Delete': '/task-delete/<str:pk>/',
+        'News-List': '/news-list/',
+        'News-Detail View': '/news-detail/<str:pk>/',
+        'News-Create': '/news-create/',
+        'News-Update': '/news-update/<str:pk>/',
+        'News-Delete': '/news-delete/<str:pk>/',
     }
 
     return Response(api_urls)
@@ -64,5 +69,50 @@ def tbook_update(request, pk):
 def tbook_delete(request, pk):
     tbook = TennisBooking.objects.get(id=pk)
     tbook.delete()
+
+    return Response('Item Successfully deleted!')
+
+
+@api_view(['GET'])
+def news_list(request):
+    new = News.objects.all()
+    serializer = NewsSerializer(new, many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def news_create(request):
+    serializer = NewsSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def news_detail(request, pk):
+    new = News.objects.get(id=pk)
+    serializer = NewsSerializer(new, many=False)
+
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def news_update(request, pk):
+    new = News.objects.get(id=pk)
+    serializer = NewsSerializer(instance=new, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def news_delete(request, pk):
+    new = News.objects.get(id=pk)
+    new.delete()
 
     return Response('Item Successfully deleted!')
