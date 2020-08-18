@@ -13,11 +13,11 @@ from .serializers import TennisBookingSerializer, NewsSerializer
 @api_view(['GET'])
 def api_overview(request):
     api_urls = {
-        'Task-List': '/task-list/',
-        'Task-Detail View': '/task-detail/<str:pk>/',
-        'Task-Create': '/task-create/',
-        'Task-Update': '/task-update/<str:pk>/',
-        'Task-Delete': '/task-delete/<str:pk>/',
+        'Tbook-List': '/tbook-list/',
+        'Tbook-Detail View': '/tbook-detail/<str:pk>/',
+        'Tbook-Create': '/tbook-create/',
+        'Tbook-Update': '/tbook-update/<str:pk>/',
+        'Tbook-Delete': '/tbook-delete/<str:pk>/',
         'News-List': '/news-list/',
         'News-Detail View': '/news-detail/<str:pk>/',
         'News-Create': '/news-create/',
