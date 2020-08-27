@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from rest_framework import status, permissions
+from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import TennisBooking, News
-from .serializers import TennisBookingSerializer, NewsSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .models import TennisBooking
+from .serializers import TennisBookingSerializer, MyTokenObtainPairSerializer, ProfileSerializer
 
 # Create your views here.
 #Need API endpoint for a list of members that can be called with fetchTasks()
@@ -18,19 +19,14 @@ def api_overview(request):
         'Tbook-Create': '/tbook-create/',
         'Tbook-Update': '/tbook-update/<str:pk>/',
         'Tbook-Delete': '/tbook-delete/<str:pk>/',
-        'News-List': '/news-list/',
-        'News-Detail View': '/news-detail/<str:pk>/',
-        'News-Create': '/news-create/',
-        'News-Update': '/news-update/<str:pk>/',
-        'News-Delete': '/news-delete/<str:pk>/',
     }
 
     return Response(api_urls)
 
 
 @api_view(['GET'])
-def tbook_list(request):
-    tbook = TennisBooking.objects.all()
+def tbook_list(request, pk):
+    tbook = TennisBooking.objects.filter(court_date=pk)
     serializer = TennisBookingSerializer(tbook, many=True)
 
     return Response(serializer.data)
@@ -73,46 +69,18 @@ def tbook_delete(request, pk):
     return Response('Item Successfully deleted!')
 
 
-@api_view(['GET'])
-def news_list(request):
-    new = News.objects.all()
-    serializer = NewsSerializer(new, many=True)
-
-    return Response(serializer.data)
+class ObtainTokenPairWithPhoneNumberView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
-@api_view(['POST'])
-def news_create(request):
-    serializer = NewsSerializer(data=request.data)
+class ProfileUserCreate(APIView):
+    permission_classes = (permissions.AllowAny,)
 
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def news_detail(request, pk):
-    new = News.objects.get(id=pk)
-    serializer = NewsSerializer(new, many=False)
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def news_update(request, pk):
-    new = News.objects.get(id=pk)
-    serializer = NewsSerializer(instance=new, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-
-@api_view(['DELETE'])
-def news_delete(request, pk):
-    new = News.objects.get(id=pk)
-    new.delete()
-
-    return Response('Item Successfully deleted!')
+    def post(self, request, format='json'):
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                json = serializer.data
+                return Response(json, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

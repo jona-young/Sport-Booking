@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class TennisBooking(models.Model):
@@ -14,8 +15,8 @@ class TennisBooking(models.Model):
     court_date = models.CharField(max_length=10)
     court_time = models.CharField(max_length=8)
     court_number = models.CharField(max_length=1)
-    #court_play refers to Singles(True) or Doubles(False)
-    court_play = models.BooleanField()
+    #court_play refers to Singles(1) or Doubles(0)
+    court_play = models.CharField(max_length=1)
     comments = models.TextField(max_length=200)
 
     #TODO: Switch to a ForeignKey(User) after...
@@ -28,18 +29,8 @@ class TennisBooking(models.Model):
     def __str__(self):
         return '{} {} - {}'.format(self.court_date, self.court_time, self.author)
 
-
-class News(models.Model):
-    news_title = models.CharField(max_length=100)
-    news_date = models.CharField(max_length=10)
-    news_time = models.CharField(max_length=8)
-    news_body = models.TextField()
-    news_readtime = models.CharField(max_length=15)
-
-    #TODO: Switch to a ForeignKey(User) after...
-    author = models.CharField(max_length=50)
-
-    def __str__(self):
-        return '{} - {} at {}'.format(self.news_title, self.news_date, self.news_time)
-
 #TODO: Members Account models
+
+class Profile(AbstractUser):
+    phone_number = models.CharField(max_length=12, blank=True)
+

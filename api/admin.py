@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import TennisBooking
+from .models import TennisBooking, Profile
 
 # Register your models here.
-admin.site.register(TennisBooking)
+class ProfileAdmin(admin.ModelAdmin):
+    model = Profile
+
+
+admin.site.register(Profile, ProfileAdmin)
