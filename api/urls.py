@@ -13,4 +13,5 @@ urlpatterns = [
     path('token/obtain/', views.ObtainTokenPairWithPhoneNumberView.as_view(), name='token-create'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token-refresh'),
     path('user/create/', views.ProfileUserCreate.as_view(), name='create-user'),
+    path('blacklist/', views.LogoutAndBlacklistRefreshTokenForUserView.as_view(), name="blacklist")
 ]
