@@ -70,7 +70,7 @@ def tbook_delete(request, pk):
     return Response('Item Successfully deleted!')
 
 
-class ObtainTokenPairWithPhoneNumberView(TokenObtainPairView):
+class ObtainTokenPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
