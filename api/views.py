@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import TennisBooking
+from .models import TennisBooking, Profile
 from .serializers import TennisBookingSerializer, MyTokenObtainPairSerializer, ProfileSerializer
 
 # Create your views here.
@@ -20,6 +20,7 @@ def api_overview(request):
         'Tbook-Create': '/tbook-create/',
         'Tbook-Update': '/tbook-update/<str:pk>/',
         'Tbook-Delete': '/tbook-delete/<str:pk>/',
+        'Profile-Detail': '/profile/<str:pk>/',
     }
 
     return Response(api_urls)
@@ -69,6 +70,12 @@ def tbook_delete(request, pk):
 
     return Response('Item Successfully deleted!')
 
+@api_view(['GET'])
+def profile_detail(request, pk):
+    profile = Profile.objects.get(id=pk)
+    serializer = ProfileSerializer(profile, many=False)
+
+    return Response(serializer.data)
 
 class ObtainTokenPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
