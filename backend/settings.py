@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 from .secrets import dkey
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -23,11 +25,16 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = dkey
+#SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+#CORS_ORIGIN_WHITELIST = os.environ.get("DJANGO_CORS_ORIGIN_WHITELIST").split(" ")
 
 
 # Application definition
