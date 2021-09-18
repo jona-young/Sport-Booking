@@ -1,0 +1,14 @@
+.footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5rem;
+    background: #FCFCFC;
+}
+
+.footer_text {
+    font-family: 'Montserrat', sans-serif;
+}

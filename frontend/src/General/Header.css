@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    background: #FCFCFC;
+}
+
+.header__optionMain {
+    font-family: 'Baloo Tamma 2', sans-serif;
+    font-size: 50px;
+    margin-left: 25px;
+    margin-right: 50px;
+}
+
+.header__optionSub {
+    font-family: 'Baloo Tamma 2', sans-serif;
+    margin-top: 2rem;
+    margin-right: 3rem;
+}
+
+.header__optionEnd {
+    font-family: 'Baloo Tamma 2', sans-serif;
+    padding-top: 2rem;
+    margin-left:auto;
+    margin-right:25px;
+}
+
+.header__linkBig {
+    text-decoration: none;
+    color: #FE852A;
+}
+
+.header__link {
+    text-decoration: none;
+    color: #444444;
+}
+
+.header__linkEnd {
+    text-decoration: none;
+    color: #444444;
+    padding-left: 2rem;
+}

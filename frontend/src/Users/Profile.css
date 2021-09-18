@@ -1,0 +1,15 @@
+.profile {
+    background: #FCFCFC;
+}
+
+.profile__mainHeading {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.profile__subHeading {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+}

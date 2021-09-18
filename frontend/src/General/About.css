@@ -1,0 +1,17 @@
+.about {
+    background: #FCFCFC;
+    padding-left: 75px;
+
+}
+
+.about__title {
+    font-family: 'Baloo Tamma 2', sans-serif;
+    font-size: x-large;
+}
+
+.about__content {
+    margin: 0;
+    font-size: small;
+    padding-left: 20%;
+    padding-right: 20%;
+}

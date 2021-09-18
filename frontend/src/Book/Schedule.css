@@ -1,0 +1,191 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+.icon {
+    font-family: 'Material Icons', serif;
+    font-style: normal;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+/* GENERAL */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.sched__body {
+    width: 1500px;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5;
+    position: relative;
+}
+
+.sched__bodyLogin {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    font-weight: bolder;
+}
+
+.schedule__header {
+    display: block;
+    width: 100%;
+    padding: 1.75em 0;
+    border-bottom: 1px solid lightgray;
+    background: white;
+}
+
+.schedule__disclaimer{
+    font-size: small;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: lighter;
+    text-transform: capitalize;
+}
+
+.schedule__disclaimerLogin {
+    text-transform: lowercase;
+}
+
+/* GRID */
+.sched__row {
+    width: 1500px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: medium;
+}
+.row-middle {
+    align-items: center;
+}
+.sched__colHead {
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 1500px;
+}
+
+.sched__col {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 1500px;
+    border-bottom: 2px solid black;
+    font-family: "Baloo Tamma 2", sans-serif;
+}
+
+.sched__link {
+    margin-top: 2rem;
+    text-decoration: none;
+}
+
+.sched__linkBook {
+    font-size: 11px;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* calendar__month */
+.calendar__month {
+    display: block;
+    position: relative;
+    width: 1506px;
+    background: #FCFCFC;
+    border: 3px solid black;
+
+    height: auto;
+    margin:0 auto;
+}
+.calendar__month .schedule__header {
+    text-transform: Capitalize;
+    background: #FCFCFC;
+    font-weight: 700;
+    font-size: 115%;
+    padding: 1.5em 0;
+}
+.calendar__month .schedule__header .icon {
+    cursor: pointer;
+    transition: .15s ease-out;
+}
+
+.calendar__month .schedule__header .icon:first-of-type {
+    margin-left: 1em;
+}
+.calendar__month .schedule__header .icon:last-of-type {
+    margin-right: 1em;
+}
+.calendar__month .sched__days {
+    text-transform: uppercase;
+    font-weight: 400;
+    color: gray;
+    font-size: 70%;
+    padding: .75em 0;
+    border-bottom: 1px solid lightgray;
+}
+.calendar__month .sched__body .cell {
+    position: relative;
+    border-right: 1px solid lightgray;
+    overflow: hidden;
+    background: white;
+    transition: 0.25s ease-out;
+}
+.calendar__month .sched__body .row {
+    border-bottom: 1px solid lightgray;
+}
+.calendar__month .sched__body .row:last-child {
+    border-bottom: none;
+}
+.calendar__month .sched__body .cell:last-child {
+    border-right: none;
+}
+.calendar__month .sched__body .coltime {
+    color: #FE852A;
+    font-weight:800;
+    font-size: x-large;
+    pointer-events: none;
+
+}
+.calendar__month .sched__body .cell .bg {
+    font-weight: 700;
+    line-height: 1;
+    color: #FE852A;
+    opacity: 0;
+    font-size: 5em;
+    position: absolute;
+    right: -.05em;
+    transition: .25s ease-out;
+    letter-spacing: -.07em;
+}
+
+.calendar__month .sched__body .sched__col {
+    flex-grow: 0;
+    flex-basis: calc(100%/5);
+    width: calc(100%/5);
+}
+
+.text {
+    font-family: 'Baloo Tamma 2', sans-serif;
+}

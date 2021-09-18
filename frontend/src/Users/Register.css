@@ -1,0 +1,12 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    background: #FCFCFC;
+}
+
+.register__form {
+    display: flex;
+    flex-direction: column;
+    width:200px;
+    margin-left: 40%
+}
